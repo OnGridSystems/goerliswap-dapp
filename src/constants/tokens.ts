@@ -32,7 +32,7 @@ const USDC_RINKEBY = new Token(
   'tUSDC',
   'test USD//C'
 )
-const USDC_GOERLI = new Token(
+export const USDC_GOERLI = new Token(
   SupportedChainId.GOERLI,
   '0x07865c6e87b9f70255377e024ace6630c1eaa37f',
   6,
@@ -159,6 +159,13 @@ export const USDT_OPTIMISM = new Token(
   'USDT',
   'Tether USD'
 )
+export const USDT_GOERLI = new Token(
+  SupportedChainId.OPTIMISM,
+  '0x242aa4858284e53d8b657e12a610fb5f03043cfa',
+  6,
+  'USDT',
+  'Mocked USDT'
+)
 export const WBTC = new Token(
   SupportedChainId.MAINNET,
   '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599',
@@ -180,6 +187,15 @@ export const WBTC_OPTIMISM = new Token(
   'WBTC',
   'Wrapped BTC'
 )
+
+export const WBTC_GOERLI = new Token(
+  SupportedChainId.GOERLI,
+  '0x9c556b18d2370d4c44f3b3153d340d9abfd8d995',
+  8,
+  'WBTC',
+  'Wrapped Bitcoin'
+)
+
 export const FEI = new Token(
   SupportedChainId.MAINNET,
   '0x956F47F50A910163D8BF957Cf5846D573E7f87CA',
