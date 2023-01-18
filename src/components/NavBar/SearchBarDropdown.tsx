@@ -1,6 +1,4 @@
 import { Trans } from '@lingui/macro'
-import { useTrace } from '@uniswap/analytics'
-import { InterfaceSectionName, NavBarSearchTypes } from '@uniswap/analytics-events'
 import { useIsNftPage } from 'hooks/useIsNftPage'
 import { Box } from 'nft/components/Box'
 import { Column, Row } from 'nft/components/Flex'
@@ -202,10 +200,8 @@ export const SearchBarDropdown = ({
     (isNFTPage && (hasVerifiedCollection || !hasVerifiedToken)) ||
     (!isNFTPage && !hasVerifiedToken && hasVerifiedCollection)
 
-  const trace = JSON.stringify(useTrace({ section: InterfaceSectionName.NAVBAR_SEARCH }))
-
   useEffect(() => {
-    const eventProperties = { total_suggestions: totalSuggestions, query_text: queryText, ...JSON.parse(trace) }
+    const eventProperties = { total_suggestions: totalSuggestions, query_text: queryText }
     if (!isLoading) {
       const tokenSearchResults =
         tokens.length > 0 ? (
@@ -216,7 +212,6 @@ export const SearchBarDropdown = ({
             toggleOpen={toggleOpen}
             suggestions={tokens}
             eventProperties={{
-              suggestion_type: NavBarSearchTypes.TOKEN_SUGGESTION,
               ...eventProperties,
             }}
             header={<Trans>Tokens</Trans>}
@@ -236,7 +231,6 @@ export const SearchBarDropdown = ({
             toggleOpen={toggleOpen}
             suggestions={collections}
             eventProperties={{
-              suggestion_type: NavBarSearchTypes.COLLECTION_SUGGESTION,
               ...eventProperties,
             }}
             header={<Trans>NFT Collections</Trans>}
@@ -272,7 +266,6 @@ export const SearchBarDropdown = ({
                 toggleOpen={toggleOpen}
                 suggestions={shortenedHistory}
                 eventProperties={{
-                  suggestion_type: NavBarSearchTypes.RECENT_SEARCH,
                   ...eventProperties,
                 }}
                 header={<Trans>Recent searches</Trans>}
@@ -287,7 +280,6 @@ export const SearchBarDropdown = ({
                 toggleOpen={toggleOpen}
                 suggestions={trendingTokens}
                 eventProperties={{
-                  suggestion_type: NavBarSearchTypes.TOKEN_TRENDING,
                   ...eventProperties,
                 }}
                 header={<Trans>Popular tokens</Trans>}
@@ -303,7 +295,6 @@ export const SearchBarDropdown = ({
                 toggleOpen={toggleOpen}
                 suggestions={trendingCollections as unknown as GenieCollection[]}
                 eventProperties={{
-                  suggestion_type: NavBarSearchTypes.COLLECTION_TRENDING,
                   ...eventProperties,
                 }}
                 header={<Trans>Popular NFT collections</Trans>}
@@ -333,7 +324,6 @@ export const SearchBarDropdown = ({
     showCollectionsFirst,
     queryText,
     totalSuggestions,
-    trace,
   ])
 
   return (

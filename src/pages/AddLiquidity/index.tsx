@@ -1,8 +1,6 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import type { TransactionResponse } from '@ethersproject/providers'
 import { Trans } from '@lingui/macro'
-import { TraceEvent } from '@uniswap/analytics'
-import { BrowserEvent, InterfaceElementName, InterfaceEventName } from '@uniswap/analytics-events'
 import { Currency, CurrencyAmount, Percent } from '@uniswap/sdk-core'
 import { FeeAmount, NonfungiblePositionManager } from '@uniswap/v3-sdk'
 import { useWeb3React } from '@web3-react/core'
@@ -434,16 +432,9 @@ export default function AddLiquidity() {
         </ThemedText.DeprecatedMain>
       </ButtonPrimary>
     ) : !account ? (
-      <TraceEvent
-        events={[BrowserEvent.onClick]}
-        name={InterfaceEventName.CONNECT_WALLET_BUTTON_CLICKED}
-        properties={{ received_swap_quote: false }}
-        element={InterfaceElementName.CONNECT_WALLET_BUTTON}
-      >
-        <ButtonLight onClick={toggleWalletModal} $borderRadius="12px" padding="12px">
-          <Trans>Connect Wallet</Trans>
-        </ButtonLight>
-      </TraceEvent>
+      <ButtonLight onClick={toggleWalletModal} $borderRadius="12px" padding="12px">
+        <Trans>Connect Wallet</Trans>
+      </ButtonLight>
     ) : (
       <AutoColumn gap="md">
         {(approvalA === ApprovalState.NOT_APPROVED ||

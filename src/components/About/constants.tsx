@@ -1,4 +1,3 @@
-import { InterfaceElementName } from '@uniswap/analytics-events'
 import { DollarSign, Terminal } from 'react-feather'
 import styled from 'styled-components/macro'
 import { lightTheme } from 'theme/colors'
@@ -18,7 +17,6 @@ export const MAIN_CARDS = [
     cta: 'Trade Tokens',
     darkBackgroundImgSrc: swapCardImgSrc,
     lightBackgroundImgSrc: swapCardImgSrc,
-    elementName: InterfaceElementName.ABOUT_PAGE_SWAP_CARD,
   },
   {
     to: '/nfts',
@@ -27,7 +25,6 @@ export const MAIN_CARDS = [
     cta: 'Explore NFTs',
     darkBackgroundImgSrc: nftCardImgSrc,
     lightBackgroundImgSrc: nftCardImgSrc,
-    elementName: InterfaceElementName.ABOUT_PAGE_NFTS_CARD,
   },
 ]
 
@@ -47,7 +44,6 @@ export const MORE_CARDS = [
     lightIcon: <DollarSign color={lightTheme.textTertiary} size={48} />,
     darkIcon: <StyledCardLogo src={darkDollarImgSrc} alt="Earn" />,
     cta: 'Buy now',
-    elementName: InterfaceElementName.ABOUT_PAGE_BUY_CRYPTO_CARD,
   },
   {
     to: '/pool',
@@ -56,7 +52,6 @@ export const MORE_CARDS = [
     lightIcon: <StyledCardLogo src={lightArrowImgSrc} alt="Analytics" />,
     darkIcon: <StyledCardLogo src={darkArrowImgSrc} alt="Analytics" />,
     cta: 'Provide liquidity',
-    elementName: InterfaceElementName.ABOUT_PAGE_EARN_CARD,
   },
   {
     to: 'https://docs.uniswap.org',
@@ -66,6 +61,5 @@ export const MORE_CARDS = [
     lightIcon: <Terminal color={lightTheme.textTertiary} size={48} />,
     darkIcon: <StyledCardLogo src={darkTerminalImgSrc} alt="Developers" />,
     cta: 'Developer docs',
-    elementName: InterfaceElementName.ABOUT_PAGE_DEV_DOCS_CARD,
   },
 ]

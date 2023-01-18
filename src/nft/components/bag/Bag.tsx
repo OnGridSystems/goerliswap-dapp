@@ -1,7 +1,5 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { formatEther } from '@ethersproject/units'
-import { sendAnalyticsEvent } from '@uniswap/analytics'
-import { NFTEventName } from '@uniswap/analytics-events'
 import { useWeb3React } from '@web3-react/core'
 import { NftListV2Variant, useNftListV2Flag } from 'featureFlags/flags/nftListV2'
 import { useIsNftDetailsPage, useIsNftPage, useIsNftProfilePage } from 'hooks/useIsNftPage'
@@ -353,11 +351,6 @@ const Bag = () => {
                 onClick={() => {
                   ;(isMobile || isNftListV2) && toggleBag()
                   setProfilePageState(ProfilePageStateType.LISTING)
-                  sendAnalyticsEvent(NFTEventName.NFT_PROFILE_PAGE_START_SELL, {
-                    list_quantity: sellAssets.length,
-                    collection_addresses: sellAssets.map((asset) => asset.asset_contract.address),
-                    token_ids: sellAssets.map((asset) => asset.tokenId),
-                  })
                 }}
               >
                 Continue

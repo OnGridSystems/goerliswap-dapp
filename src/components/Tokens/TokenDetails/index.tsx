@@ -1,6 +1,4 @@
 import { Trans } from '@lingui/macro'
-import { Trace } from '@uniswap/analytics'
-import { InterfacePageName } from '@uniswap/analytics-events'
 import { Currency } from '@uniswap/sdk-core'
 import { useWeb3React } from '@web3-react/core'
 import CurrencyLogo from 'components/Logo/CurrencyLogo'
@@ -175,71 +173,65 @@ export default function TokenDetails({
     return <InvalidTokenDetails chainName={address && getChainInfo(pageChainId)?.label} />
   }
   return (
-    <Trace
-      page={InterfacePageName.TOKEN_DETAILS_PAGE}
-      properties={{ tokenAddress: address, tokenName: token?.name }}
-      shouldLogImpression
-    >
-      <TokenDetailsLayout>
-        {token && !isPending ? (
-          <LeftPanel>
-            <BreadcrumbNavLink to={`/tokens/${chain.toLowerCase()}`}>
-              <ArrowLeft data-testid="token-details-return-button" size={14} /> Tokens
-            </BreadcrumbNavLink>
-            <TokenInfoContainer data-testid="token-info-container">
-              <TokenNameCell>
-                <LogoContainer>
-                  <CurrencyLogo currency={token} size="32px" />
-                  <L2NetworkLogo networkUrl={L2Icon} size="16px" />
-                </LogoContainer>
-                {token.name ?? <Trans>Name not found</Trans>}
-                <TokenSymbol>{token.symbol ?? <Trans>Symbol not found</Trans>}</TokenSymbol>
-              </TokenNameCell>
-              <TokenActions>
-                <ShareButton currency={token} />
-              </TokenActions>
-            </TokenInfoContainer>
-            <ChartSection tokenPriceQuery={tokenPriceQuery} onChangeTimePeriod={onChangeTimePeriod} />
-            <StatsSection
-              TVL={tokenQueryData?.market?.totalValueLocked?.value}
-              volume24H={tokenQueryData?.market?.volume24H?.value}
-              priceHigh52W={tokenQueryData?.market?.priceHigh52W?.value}
-              priceLow52W={tokenQueryData?.market?.priceLow52W?.value}
-            />
-            <Hr />
-            <AboutSection
-              address={address}
-              chainId={pageChainId}
-              description={tokenQueryData?.project?.description}
-              homepageUrl={tokenQueryData?.project?.homepageUrl}
-              twitterName={tokenQueryData?.project?.twitterName}
-            />
-            {!token.isNative && <AddressSection address={address} />}
-          </LeftPanel>
-        ) : (
-          <TokenDetailsSkeleton />
-        )}
-
-        <RightPanel>
-          <Widget
-            token={token ?? undefined}
-            onTokenChange={navigateToWidgetSelectedToken}
-            onReviewSwapClick={onReviewSwapClick}
+    <TokenDetailsLayout>
+      {token && !isPending ? (
+        <LeftPanel>
+          <BreadcrumbNavLink to={`/tokens/${chain.toLowerCase()}`}>
+            <ArrowLeft data-testid="token-details-return-button" size={14} /> Tokens
+          </BreadcrumbNavLink>
+          <TokenInfoContainer data-testid="token-info-container">
+            <TokenNameCell>
+              <LogoContainer>
+                <CurrencyLogo currency={token} size="32px" />
+                <L2NetworkLogo networkUrl={L2Icon} size="16px" />
+              </LogoContainer>
+              {token.name ?? <Trans>Name not found</Trans>}
+              <TokenSymbol>{token.symbol ?? <Trans>Symbol not found</Trans>}</TokenSymbol>
+            </TokenNameCell>
+            <TokenActions>
+              <ShareButton currency={token} />
+            </TokenActions>
+          </TokenInfoContainer>
+          <ChartSection tokenPriceQuery={tokenPriceQuery} onChangeTimePeriod={onChangeTimePeriod} />
+          <StatsSection
+            TVL={tokenQueryData?.market?.totalValueLocked?.value}
+            volume24H={tokenQueryData?.market?.volume24H?.value}
+            priceHigh52W={tokenQueryData?.market?.priceHigh52W?.value}
+            priceLow52W={tokenQueryData?.market?.priceLow52W?.value}
           />
-          {tokenWarning && <TokenSafetyMessage tokenAddress={address} warning={tokenWarning} />}
-          {token && <BalanceSummary token={token} />}
-        </RightPanel>
-        {token && <MobileBalanceSummaryFooter token={token} />}
+          <Hr />
+          <AboutSection
+            address={address}
+            chainId={pageChainId}
+            description={tokenQueryData?.project?.description}
+            homepageUrl={tokenQueryData?.project?.homepageUrl}
+            twitterName={tokenQueryData?.project?.twitterName}
+          />
+          {!token.isNative && <AddressSection address={address} />}
+        </LeftPanel>
+      ) : (
+        <TokenDetailsSkeleton />
+      )}
 
-        <TokenSafetyModal
-          isOpen={isBlockedToken || !!continueSwap}
-          tokenAddress={address}
-          onContinue={() => onResolveSwap(true)}
-          onBlocked={() => navigate(-1)}
-          onCancel={() => onResolveSwap(false)}
-          showCancel={true}
+      <RightPanel>
+        <Widget
+          token={token ?? undefined}
+          onTokenChange={navigateToWidgetSelectedToken}
+          onReviewSwapClick={onReviewSwapClick}
         />
-      </TokenDetailsLayout>
-    </Trace>
+        {tokenWarning && <TokenSafetyMessage tokenAddress={address} warning={tokenWarning} />}
+        {token && <BalanceSummary token={token} />}
+      </RightPanel>
+      {token && <MobileBalanceSummaryFooter token={token} />}
+
+      <TokenSafetyModal
+        isOpen={isBlockedToken || !!continueSwap}
+        tokenAddress={address}
+        onContinue={() => onResolveSwap(true)}
+        onBlocked={() => navigate(-1)}
+        onCancel={() => onResolveSwap(false)}
+        showCancel={true}
+      />
+    </TokenDetailsLayout>
   )
 }

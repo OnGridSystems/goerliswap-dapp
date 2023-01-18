@@ -2,11 +2,8 @@ import { BigNumber } from '@ethersproject/bignumber'
 import type { JsonRpcProvider, TransactionResponse } from '@ethersproject/providers'
 // eslint-disable-next-line no-restricted-imports
 import { t, Trans } from '@lingui/macro'
-import { sendAnalyticsEvent } from '@uniswap/analytics'
-import { SwapEventName } from '@uniswap/analytics-events'
 import { Trade } from '@uniswap/router-sdk'
 import { Currency, TradeType } from '@uniswap/sdk-core'
-import { formatSwapSignedAnalyticsEventProperties } from 'lib/utils/analytics'
 import { useMemo } from 'react'
 import { calculateGasMargin } from 'utils/calculateGasMargin'
 import isZero from 'utils/isZero'
@@ -119,12 +116,7 @@ export default function useSendSwapTransaction(
             ...(value && !isZero(value) ? { value } : {}),
           })
           .then((response) => {
-            sendAnalyticsEvent(
-              SwapEventName.SWAP_SIGNED,
-              formatSwapSignedAnalyticsEventProperties({ trade, txHash: response.hash })
-            )
             if (calldata !== response.data) {
-              sendAnalyticsEvent(SwapEventName.SWAP_MODIFIED_IN_WALLET, { txHash: response.hash })
               throw new InvalidSwapError(
                 t`Your swap was modified through your wallet. If this was a mistake, please cancel immediately or risk losing your funds.`
               )

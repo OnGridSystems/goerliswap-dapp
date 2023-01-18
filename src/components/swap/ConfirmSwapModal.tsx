@@ -1,6 +1,4 @@
 import { Trans } from '@lingui/macro'
-import { Trace } from '@uniswap/analytics'
-import { InterfaceModalName } from '@uniswap/analytics-events'
 import { Trade } from '@uniswap/router-sdk'
 import { Currency, CurrencyAmount, Percent, Token, TradeType } from '@uniswap/sdk-core'
 import { ReactNode, useCallback, useMemo, useState } from 'react'
@@ -27,8 +25,6 @@ export default function ConfirmSwapModal({
   attemptingTxn,
   txHash,
   swapQuoteReceivedDate,
-  fiatValueInput,
-  fiatValueOutput,
 }: {
   isOpen: boolean
   trade: InterfaceTrade<Currency, Currency, TradeType> | undefined
@@ -76,27 +72,12 @@ export default function ConfirmSwapModal({
     return trade ? (
       <SwapModalFooter
         onConfirm={onConfirm}
-        trade={trade}
-        hash={txHash}
-        allowedSlippage={allowedSlippage}
         disabledConfirm={showAcceptChanges}
         swapErrorMessage={swapErrorMessage}
         swapQuoteReceivedDate={swapQuoteReceivedDate}
-        fiatValueInput={fiatValueInput}
-        fiatValueOutput={fiatValueOutput}
       />
     ) : null
-  }, [
-    onConfirm,
-    showAcceptChanges,
-    swapErrorMessage,
-    trade,
-    allowedSlippage,
-    txHash,
-    swapQuoteReceivedDate,
-    fiatValueInput,
-    fiatValueOutput,
-  ])
+  }, [onConfirm, showAcceptChanges, swapErrorMessage, trade, swapQuoteReceivedDate])
 
   // text to show while loading
   const pendingText = (
@@ -122,16 +103,14 @@ export default function ConfirmSwapModal({
   )
 
   return (
-    <Trace modal={InterfaceModalName.CONFIRM_SWAP}>
-      <TransactionConfirmationModal
-        isOpen={isOpen}
-        onDismiss={onModalDismiss}
-        attemptingTxn={attemptingTxn}
-        hash={txHash}
-        content={confirmationContent}
-        pendingText={pendingText}
-        currencyToAdd={trade?.outputAmount.currency}
-      />
-    </Trace>
+    <TransactionConfirmationModal
+      isOpen={isOpen}
+      onDismiss={onModalDismiss}
+      attemptingTxn={attemptingTxn}
+      hash={txHash}
+      content={confirmationContent}
+      pendingText={pendingText}
+      currencyToAdd={trade?.outputAmount.currency}
+    />
   )
 }

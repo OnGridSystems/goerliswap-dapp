@@ -1,6 +1,4 @@
 import { Trans } from '@lingui/macro'
-import { sendAnalyticsEvent, user } from '@uniswap/analytics'
-import { CustomUserProperties, InterfaceEventName, WalletConnectionResult } from '@uniswap/analytics-events'
 import { useWeb3React } from '@web3-react/core'
 import { Connector } from '@web3-react/types'
 import { AutoColumn } from 'components/Column'
@@ -124,26 +122,6 @@ const WALLET_VIEWS = {
   PENDING: 'pending',
 }
 
-const sendAnalyticsEventAndUserInfo = (
-  account: string,
-  walletType: string,
-  chainId: number | undefined,
-  isReconnect: boolean
-) => {
-  sendAnalyticsEvent(InterfaceEventName.WALLET_CONNECT_TXN_COMPLETED, {
-    result: WalletConnectionResult.SUCCEEDED,
-    wallet_address: account,
-    wallet_type: walletType,
-    is_reconnect: isReconnect,
-  })
-  user.set(CustomUserProperties.WALLET_ADDRESS, account)
-  user.set(CustomUserProperties.WALLET_TYPE, walletType)
-  if (chainId) {
-    user.postInsert(CustomUserProperties.ALL_WALLET_CHAIN_IDS, chainId)
-  }
-  user.postInsert(CustomUserProperties.ALL_WALLET_ADDRESSES_CONNECTED, account)
-}
-
 export default function WalletModal({
   pendingTransactions,
   confirmedTransactions,
@@ -212,7 +190,6 @@ export default function WalletModal({
       const walletType = getConnectionName(getConnection(connector).type)
       const isReconnect =
         connectedWallets.filter((wallet) => wallet.account === account && wallet.walletType === walletType).length > 0
-      sendAnalyticsEventAndUserInfo(account, walletType, chainId, isReconnect)
       if (!isReconnect) addWalletToConnectedWallets({ account, walletType })
     }
     setLastActiveWalletAddress(account)
@@ -233,11 +210,6 @@ export default function WalletModal({
       } catch (error) {
         console.debug(`web3-react connection error: ${error}`)
         dispatch(updateConnectionError({ connectionType, error: error.message }))
-
-        sendAnalyticsEvent(InterfaceEventName.WALLET_CONNECT_TXN_COMPLETED, {
-          result: WalletConnectionResult.FAILED,
-          wallet_type: getConnectionName(connectionType),
-        })
       }
     },
     [dispatch]

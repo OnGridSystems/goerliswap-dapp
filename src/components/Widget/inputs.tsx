@@ -1,5 +1,3 @@
-import { sendAnalyticsEvent, useTrace } from '@uniswap/analytics'
-import { InterfaceSectionName, SwapEventName } from '@uniswap/analytics-events'
 import { Currency, Field, SwapController, SwapEventHandlers, TradeType } from '@uniswap/widgets'
 import CurrencySearchModal from 'components/SearchModal/CurrencySearchModal'
 import { useCallback, useEffect, useMemo, useState } from 'react'
@@ -26,8 +24,6 @@ export function useSyncWidgetInputs({
   token?: Currency
   onTokenChange?: (token: Currency) => void
 }) {
-  const trace = useTrace({ section: InterfaceSectionName.WIDGET })
-
   const [type, setType] = useState<SwapValue['type']>(TradeType.EXACT_INPUT)
   const [amount, setAmount] = useState<SwapValue['amount']>(EMPTY_AMOUNT)
   const [tokens, setTokens] = useState<SwapTokens>({ [Field.OUTPUT]: token, default: token })
@@ -42,26 +38,19 @@ export function useSyncWidgetInputs({
     })
   }, [token])
 
-  const onAmountChange = useCallback(
-    (field: Field, amount: string, origin?: 'max') => {
-      if (origin === 'max') {
-        sendAnalyticsEvent(SwapEventName.SWAP_MAX_TOKEN_AMOUNT_SELECTED, { ...trace })
-      }
-      setType(field === Field.INPUT ? TradeType.EXACT_INPUT : TradeType.EXACT_OUTPUT)
-      setAmount(amount)
-    },
-    [trace]
-  )
+  const onAmountChange = useCallback((field: Field, amount: string) => {
+    setType(field === Field.INPUT ? TradeType.EXACT_INPUT : TradeType.EXACT_OUTPUT)
+    setAmount(amount)
+  }, [])
 
   const onSwitchTokens = useCallback(() => {
-    sendAnalyticsEvent(SwapEventName.SWAP_TOKENS_REVERSED, { ...trace })
     setType((type) => invertTradeType(type))
     setTokens((tokens) => ({
       [Field.INPUT]: tokens[Field.OUTPUT],
       [Field.OUTPUT]: tokens[Field.INPUT],
       default: tokens.default,
     }))
-  }, [trace])
+  }, [])
 
   const [selectingField, setSelectingField] = useState<Field>()
   const onTokenSelectorClick = useCallback((field: Field) => {
