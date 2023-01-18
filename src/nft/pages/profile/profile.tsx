@@ -1,5 +1,3 @@
-import { Trace } from '@uniswap/analytics'
-import { InterfacePageName } from '@uniswap/analytics-events'
 import { useWeb3React } from '@web3-react/core'
 import { Box } from 'nft/components/Box'
 import { Center, Column } from 'nft/components/Flex'
@@ -44,31 +42,29 @@ const ProfileContent = () => {
   const cartExpanded = useBag((state) => state.bagExpanded)
 
   return (
-    <Trace page={InterfacePageName.NFT_PROFILE_PAGE} shouldLogImpression>
-      <Box className={styles.profileWrapper}>
-        {/* <Head> TODO: figure out metadata tagging
+    <Box className={styles.profileWrapper}>
+      {/* <Head> TODO: figure out metadata tagging
           <title>Genie | Sell</title>
         </Head> */}
-        {account ? (
-          <Box style={{ width: `calc(100% - ${cartExpanded ? SHOPPING_BAG_WIDTH : 0}px)` }}>
-            {sellPageState === ProfilePageStateType.VIEWING ? <ProfilePage /> : <ListPage />}
-          </Box>
-        ) : (
-          <Column as="section" gap="60" className={styles.section}>
-            <div style={{ minHeight: '70vh' }}>
-              <Center className={styles.notConnected} flexDirection="column">
-                <Box as="span" className={headlineMedium} color="textSecondary" marginBottom="24" display="block">
-                  No items to display
-                </Box>
-                <Box as="button" className={buttonMedium} onClick={toggleWalletModal}>
-                  Connect Wallet
-                </Box>
-              </Center>
-            </div>
-          </Column>
-        )}
-      </Box>
-    </Trace>
+      {account ? (
+        <Box style={{ width: `calc(100% - ${cartExpanded ? SHOPPING_BAG_WIDTH : 0}px)` }}>
+          {sellPageState === ProfilePageStateType.VIEWING ? <ProfilePage /> : <ListPage />}
+        </Box>
+      ) : (
+        <Column as="section" gap="60" className={styles.section}>
+          <div style={{ minHeight: '70vh' }}>
+            <Center className={styles.notConnected} flexDirection="column">
+              <Box as="span" className={headlineMedium} color="textSecondary" marginBottom="24" display="block">
+                No items to display
+              </Box>
+              <Box as="button" className={buttonMedium} onClick={toggleWalletModal}>
+                Connect Wallet
+              </Box>
+            </Center>
+          </div>
+        </Column>
+      )}
+    </Box>
   )
 }
 

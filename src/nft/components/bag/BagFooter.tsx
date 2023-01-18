@@ -1,8 +1,6 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { parseEther } from '@ethersproject/units'
 import { Trans } from '@lingui/macro'
-import { TraceEvent } from '@uniswap/analytics'
-import { BrowserEvent, InterfaceElementName, NFTEventName } from '@uniswap/analytics-events'
 import { useWeb3React } from '@web3-react/core'
 import Column from 'components/Column'
 import Loader from 'components/Loader'
@@ -127,13 +125,7 @@ const PENDING_BAG_STATUSES = [
   BagStatus.PROCESSING_TRANSACTION,
 ]
 
-export const BagFooter = ({
-  totalEthPrice,
-  totalUsdPrice,
-  bagStatus,
-  fetchAssets,
-  eventProperties,
-}: BagFooterProps) => {
+export const BagFooter = ({ totalEthPrice, totalUsdPrice, bagStatus, fetchAssets }: BagFooterProps) => {
   const toggleWalletModal = useToggleWalletModal()
   const theme = useTheme()
   const { account, chainId, connector } = useWeb3React()
@@ -242,19 +234,11 @@ export const BagFooter = ({
             </Row>
           </FooterHeader>
         )}
-        <TraceEvent
-          events={[BrowserEvent.onClick]}
-          name={NFTEventName.NFT_BUY_BAG_PAY}
-          element={InterfaceElementName.NFT_BUY_BAG_PAY_BUTTON}
-          properties={{ ...eventProperties }}
-          shouldLogImpression={connected && !disabled}
-        >
-          <Warning>{warningText}</Warning>
-          <ActionButton onClick={handleClick} disabled={disabled}>
-            {isPending && <Loader size="20px" stroke="white" />}
-            {buttonText}
-          </ActionButton>
-        </TraceEvent>
+        <Warning>{warningText}</Warning>
+        <ActionButton onClick={handleClick} disabled={disabled}>
+          {isPending && <Loader size="20px" stroke="white" />}
+          {buttonText}
+        </ActionButton>
       </Footer>
     </FooterContainer>
   )

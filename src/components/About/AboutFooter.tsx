@@ -1,5 +1,3 @@
-import { TraceEvent } from '@uniswap/analytics'
-import { BrowserEvent, InterfaceElementName, SharedEventName } from '@uniswap/analytics-events'
 import { Link } from 'react-router-dom'
 import { useIsDarkMode } from 'state/user/hooks'
 import styled from 'styled-components/macro'
@@ -123,15 +121,9 @@ const LogoSectionContent = () => {
         <SocialLink href="https://github.com/Uniswap" target="_blank" rel="noopener noreferrer">
           <DiscordIcon size={32} />
         </SocialLink>
-        <TraceEvent
-          events={[BrowserEvent.onClick]}
-          name={SharedEventName.ELEMENT_CLICKED}
-          element={InterfaceElementName.TWITTER_LINK}
-        >
-          <SocialLink href="https://twitter.com/uniswap" target="_blank" rel="noopener noreferrer">
-            <TwitterIcon size={32} />
-          </SocialLink>
-        </TraceEvent>
+        <SocialLink href="https://twitter.com/uniswap" target="_blank" rel="noopener noreferrer">
+          <TwitterIcon size={32} />
+        </SocialLink>
         <SocialLink href="https://discord.gg/FCfyBSbCU5" target="_blank" rel="noopener noreferrer">
           <GithubIcon size={32} />
         </SocialLink>
@@ -170,49 +162,25 @@ export const AboutFooter = () => {
         </LinkGroup>
         <LinkGroup>
           <LinkGroupTitle>Company</LinkGroupTitle>
-          <TraceEvent
-            events={[BrowserEvent.onClick]}
-            name={SharedEventName.ELEMENT_CLICKED}
-            element={InterfaceElementName.CAREERS_LINK}
-          >
-            <ExternalTextLink href="https://boards.greenhouse.io/uniswaplabs" target="_blank" rel="noopener noreferrer">
-              Careers
-            </ExternalTextLink>
-          </TraceEvent>
-          <TraceEvent
-            events={[BrowserEvent.onClick]}
-            name={SharedEventName.ELEMENT_CLICKED}
-            element={InterfaceElementName.BLOG_LINK}
-          >
-            <ExternalTextLink href="https://uniswap.org/blog" target="_blank" rel="noopener noreferrer">
-              Blog
-            </ExternalTextLink>
-          </TraceEvent>
+          <ExternalTextLink href="https://boards.greenhouse.io/uniswaplabs" target="_blank" rel="noopener noreferrer">
+            Careers
+          </ExternalTextLink>
+          <ExternalTextLink href="https://uniswap.org/blog" target="_blank" rel="noopener noreferrer">
+            Blog
+          </ExternalTextLink>
         </LinkGroup>
         <LinkGroup>
           <LinkGroupTitle>Get Help</LinkGroupTitle>
-          <TraceEvent
-            events={[BrowserEvent.onClick]}
-            name={SharedEventName.ELEMENT_CLICKED}
-            element={InterfaceElementName.SUPPORT_LINK}
+          <ExternalTextLink
+            href="https://support.uniswap.org/hc/en-us/requests/new"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <ExternalTextLink
-              href="https://support.uniswap.org/hc/en-us/requests/new"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Contact Us
-            </ExternalTextLink>
-          </TraceEvent>
-          <TraceEvent
-            events={[BrowserEvent.onClick]}
-            name={SharedEventName.ELEMENT_CLICKED}
-            element={InterfaceElementName.SUPPORT_LINK}
-          >
-            <ExternalTextLink href="https://support.uniswap.org/hc/en-us" target="_blank" rel="noopener noreferrer">
-              Help Center
-            </ExternalTextLink>
-          </TraceEvent>
+            Contact Us
+          </ExternalTextLink>
+          <ExternalTextLink href="https://support.uniswap.org/hc/en-us" target="_blank" rel="noopener noreferrer">
+            Help Center
+          </ExternalTextLink>
         </LinkGroup>
       </FooterLinks>
 

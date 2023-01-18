@@ -1,6 +1,4 @@
 import { Trans } from '@lingui/macro'
-import { Trace, TraceEvent } from '@uniswap/analytics'
-import { BrowserEvent, InterfaceElementName, InterfacePageName, SharedEventName } from '@uniswap/analytics-events'
 import { AboutFooter } from 'components/About/AboutFooter'
 import Card, { CardType } from 'components/About/Card'
 import { MAIN_CARDS, MORE_CARDS } from 'components/About/constants'
@@ -297,19 +295,13 @@ export default function Landing() {
   }, [navigate, selectedWallet, queryParams.intro])
 
   return (
-    <Trace page={InterfacePageName.LANDING_PAGE} shouldLogImpression>
+    <>
       {showContent && (
         <PageContainer isDarkMode={isDarkMode} data-testid="landing-page">
           <LandingSwapContainer>
-            <TraceEvent
-              events={[BrowserEvent.onClick]}
-              name={SharedEventName.ELEMENT_CLICKED}
-              element={InterfaceElementName.LANDING_PAGE_SWAP_ELEMENT}
-            >
-              <Link to="/swap">
-                <LandingSwap />
-              </Link>
-            </TraceEvent>
+            <Link to="/swap">
+              <LandingSwap />
+            </Link>
           </LandingSwapContainer>
           <Gradient isDarkMode={isDarkMode} />
           <GlowContainer>
@@ -321,15 +313,9 @@ export default function Landing() {
               <SubText>Buy, sell, and explore tokens and NFTs</SubText>
             </SubTextContainer>
             <ActionsContainer>
-              <TraceEvent
-                events={[BrowserEvent.onClick]}
-                name={SharedEventName.ELEMENT_CLICKED}
-                element={InterfaceElementName.CONTINUE_BUTTON}
-              >
-                <ButtonCTA as={Link} to="/swap">
-                  <ButtonCTAText>Get started</ButtonCTAText>
-                </ButtonCTA>
-              </TraceEvent>
+              <ButtonCTA as={Link} to="/swap">
+                <ButtonCTAText>Get started</ButtonCTAText>
+              </ButtonCTA>
             </ActionsContainer>
             <LearnMoreContainer
               onClick={() => {
@@ -360,6 +346,6 @@ export default function Landing() {
           </AboutContentContainer>
         </PageContainer>
       )}
-    </Trace>
+    </>
   )
 }

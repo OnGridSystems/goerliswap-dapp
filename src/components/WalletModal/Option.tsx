@@ -1,5 +1,3 @@
-import { TraceEvent } from '@uniswap/analytics'
-import { BrowserEvent, InterfaceElementName, InterfaceEventName } from '@uniswap/analytics-events'
 import React from 'react'
 import { Check } from 'react-feather'
 import styled from 'styled-components/macro'
@@ -114,31 +112,24 @@ export default function Option({
   id: string
 }) {
   const content = (
-    <TraceEvent
-      events={[BrowserEvent.onClick]}
-      name={InterfaceEventName.WALLET_SELECTED}
-      properties={{ wallet_type: header }}
-      element={InterfaceElementName.WALLET_TYPE_OPTION}
+    <OptionCardClickable
+      id={id}
+      onClick={onClick}
+      clickable={clickable && !isActive}
+      active={isActive}
+      data-testid="wallet-modal-option"
     >
-      <OptionCardClickable
-        id={id}
-        onClick={onClick}
-        clickable={clickable && !isActive}
-        active={isActive}
-        data-testid="wallet-modal-option"
-      >
-        <OptionCardLeft>
-          <HeaderText color={color}>
-            <IconWrapper size={size}>
-              <img src={icon} alt="Icon" />
-            </IconWrapper>
-            {header}
-          </HeaderText>
-          {subheader && <SubHeader>{subheader}</SubHeader>}
-        </OptionCardLeft>
-        {isActive && <CheckIcon />}
-      </OptionCardClickable>
-    </TraceEvent>
+      <OptionCardLeft>
+        <HeaderText color={color}>
+          <IconWrapper size={size}>
+            <img src={icon} alt="Icon" />
+          </IconWrapper>
+          {header}
+        </HeaderText>
+        {subheader && <SubHeader>{subheader}</SubHeader>}
+      </OptionCardLeft>
+      {isActive && <CheckIcon />}
+    </OptionCardClickable>
   )
   if (link) {
     return <ExternalLink href={link}>{content}</ExternalLink>

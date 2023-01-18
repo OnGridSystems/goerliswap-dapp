@@ -1,7 +1,4 @@
 import { Trans } from '@lingui/macro'
-import { useTrace } from '@uniswap/analytics'
-import { sendAnalyticsEvent } from '@uniswap/analytics'
-import { NFTEventName } from '@uniswap/analytics-events'
 import { MouseoverTooltip } from 'components/Tooltip'
 import Tooltip from 'components/Tooltip'
 import { NftStandard } from 'graphql/data/__generated__/types-and-hooks'
@@ -69,7 +66,6 @@ export const ViewMyNftsAsset = ({
 
   const [showTooltip, setShowTooltip] = useState(false)
   const isSelectedRef = useRef(isSelected)
-  const trace = useTrace()
   const onCardClick = () => handleSelect(isSelected)
 
   const handleSelect = (removeAsset: boolean) => {
@@ -77,11 +73,6 @@ export const ViewMyNftsAsset = ({
       removeSellAsset(asset)
     } else {
       selectSellAsset(asset)
-      sendAnalyticsEvent(NFTEventName.NFT_SELL_ITEM_ADDED, {
-        collection_address: asset.asset_contract.address,
-        token_id: asset.tokenId,
-        ...trace,
-      })
     }
     if (
       !cartExpanded &&
