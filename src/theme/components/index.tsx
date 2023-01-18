@@ -1,5 +1,4 @@
 import { Trans } from '@lingui/macro'
-import { outboundLink } from 'components/analytics'
 import { MOBILE_MEDIA_BREAKPOINT } from 'components/Tokens/constants'
 import useCopyClipboard from 'hooks/useCopyClipboard'
 import React, {
@@ -25,7 +24,6 @@ import { flexRowNoWrap } from 'theme/styles'
 import { Z_INDEX } from 'theme/zIndex'
 
 import { ReactComponent as TooltipTriangle } from '../../assets/svg/tooltip_triangle.svg'
-import { anonymizeLink } from '../../utils/anonymizeLink'
 
 // TODO: Break this file into a components folder
 
@@ -160,21 +158,13 @@ export const UniTokenAnimated = styled.img`
 `
 
 function handleClickExternalLink(event: React.MouseEvent<HTMLAnchorElement>) {
-  const { target, href } = event.currentTarget
-
-  const anonymizedHref = anonymizeLink(href)
+  const { target } = event.currentTarget
 
   // don't prevent default, don't redirect if it's a new tab
   if (target === '_blank' || event.ctrlKey || event.metaKey) {
-    outboundLink({ label: anonymizedHref }, () => {
-      console.debug('Fired outbound link event', anonymizedHref)
-    })
+    return
   } else {
     event.preventDefault()
-    // send a ReactGA event and then trigger a location change
-    outboundLink({ label: anonymizedHref }, () => {
-      window.location.href = anonymizedHref
-    })
   }
 }
 

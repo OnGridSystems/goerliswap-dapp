@@ -6,7 +6,6 @@ import { TraceEvent } from '@uniswap/analytics'
 import { BrowserEvent, InterfaceElementName, InterfaceEventName } from '@uniswap/analytics-events'
 import { Currency, Percent } from '@uniswap/sdk-core'
 import { useWeb3React } from '@web3-react/core'
-import { sendEvent } from 'components/analytics'
 import { useV2LiquidityTokenPermit } from 'hooks/useV2LiquidityTokenPermit'
 import { useCallback, useMemo, useState } from 'react'
 import { ArrowDown, Plus } from 'react-feather'
@@ -273,12 +272,6 @@ export default function RemoveLiquidity() {
           })
 
           setTxHash(response.hash)
-
-          sendEvent({
-            category: 'Liquidity',
-            action: 'Remove',
-            label: [currencyA.symbol, currencyB.symbol].join('/'),
-          })
         })
         .catch((error: Error) => {
           setAttemptingTxn(false)

@@ -1,8 +1,7 @@
 import { Trans } from '@lingui/macro'
-import { sendEvent } from 'components/analytics'
 import Card, { DarkGrayCard } from 'components/Card'
 import Row, { AutoRow, RowBetween } from 'components/Row'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { ArrowDown, Info, X } from 'react-feather'
 import styled from 'styled-components/macro'
 import { ExternalLink, ThemedText } from 'theme'
@@ -83,15 +82,6 @@ export function PrivacyPolicyModal() {
   const node = useRef<HTMLDivElement>()
   const open = useModalIsOpen(ApplicationModal.PRIVACY_POLICY)
   const toggle = useTogglePrivacyPolicy()
-
-  useEffect(() => {
-    if (!open) return
-
-    sendEvent({
-      category: 'Modal',
-      action: 'Show Legal',
-    })
-  }, [open])
 
   return (
     <Modal isOpen={open} onDismiss={() => toggle()}>
