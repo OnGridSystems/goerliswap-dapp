@@ -1,7 +1,7 @@
 import { TokenInfo } from '@uniswap/token-lists'
 
 import store from '../state'
-import { UNI_EXTENDED_LIST, UNI_LIST, UNSUPPORTED_LIST_URLS } from './lists'
+import { CUSTOM_TOKEN_LIST, NEW_TOKEN_LIST, UNI_EXTENDED_LIST, UNI_LIST, UNSUPPORTED_LIST_URLS } from './lists'
 import brokenTokenList from './tokenLists/broken.tokenlist.json'
 import { NATIVE_CHAIN_ID } from './tokens'
 
@@ -26,6 +26,14 @@ class TokenSafetyLookupTable {
 
     // Initialize default tokens second, so that any tokens on both default and extended will display as default (no warning)
     store.getState().lists.byUrl[UNI_LIST].current?.tokens.forEach((token) => {
+      dict[token.address.toLowerCase()] = TOKEN_LIST_TYPES.UNI_DEFAULT
+    })
+
+    store.getState().lists.byUrl[CUSTOM_TOKEN_LIST].current?.tokens.forEach((token) => {
+      dict[token.address.toLowerCase()] = TOKEN_LIST_TYPES.UNI_DEFAULT
+    })
+
+    store.getState().lists.byUrl[NEW_TOKEN_LIST].current?.tokens.forEach((token) => {
       dict[token.address.toLowerCase()] = TOKEN_LIST_TYPES.UNI_DEFAULT
     })
 
