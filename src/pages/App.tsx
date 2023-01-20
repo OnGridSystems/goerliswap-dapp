@@ -32,9 +32,7 @@ import RemoveLiquidity from './RemoveLiquidity'
 import RemoveLiquidityV3 from './RemoveLiquidity/V3'
 import Swap from './Swap'
 import { RedirectPathToSwapOnly } from './Swap/redirects'
-import Tokens from './Tokens'
 
-const TokenDetails = lazy(() => import('./TokenDetails'))
 const Vote = lazy(() => import('./Vote'))
 const NftExplore = lazy(() => import('nft/pages/explore'))
 const Collection = lazy(() => import('nft/pages/collection'))
@@ -131,10 +129,6 @@ export default function App() {
           {isLoaded ? (
             <Routes>
               <Route path="/" element={<Landing />} />
-              <Route path="tokens" element={<Tokens />}>
-                <Route path=":chainName" />
-              </Route>
-              <Route path="tokens/:chainName/:tokenAddress" element={<TokenDetails />} />
               <Route
                 path="vote/*"
                 element={
