@@ -2,15 +2,7 @@ import { style } from '@vanilla-extract/css'
 
 import { sprinkles, vars } from './sprinkles.css'
 
-export const center = sprinkles({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-})
-
 // TYPOGRAPHY
-export const headlineLarge = sprinkles({ fontWeight: 'semibold', fontSize: '36', lineHeight: '44' })
-export const headlineMedium = sprinkles({ fontWeight: 'semibold', fontSize: '28', lineHeight: '36' })
 export const headlineSmall = sprinkles({ fontWeight: 'semibold', fontSize: '20', lineHeight: '28' })
 
 export const subhead = sprinkles({ fontWeight: 'medium', fontSize: '16', lineHeight: '24' })
@@ -36,21 +28,6 @@ export const commonButtonStyles = style([
     },
     ':disabled': {
       cursor: 'auto',
-    },
-  },
-])
-
-export const buttonMedium = style([
-  buttonTextMedium,
-  commonButtonStyles,
-  sprinkles({
-    backgroundColor: 'accentAction',
-    color: 'explicitWhite',
-  }),
-  {
-    padding: '14px 18px',
-    ':disabled': {
-      opacity: '0.3',
     },
   },
 ])

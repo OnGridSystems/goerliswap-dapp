@@ -3,7 +3,7 @@ import { FormEvent, forwardRef } from 'react'
 
 import { Box, BoxProps } from '../Box'
 
-export const Input = forwardRef<HTMLInputElement, BoxProps>((props, ref) => (
+const Input = forwardRef<HTMLInputElement, BoxProps>((props, ref) => (
   <Box
     ref={ref}
     as="input"
@@ -21,7 +21,7 @@ export const Input = forwardRef<HTMLInputElement, BoxProps>((props, ref) => (
 
 Input.displayName = 'Input'
 
-export const NumericInput = forwardRef<HTMLInputElement, BoxProps>((props, ref) => {
+const NumericInput = forwardRef<HTMLInputElement, BoxProps>((props, ref) => {
   return (
     <Box
       ref={ref}
