@@ -230,7 +230,7 @@ export function useAddUserToken(): (token: Token) => void {
   )
 }
 
-export function useUserAddedTokensOnChain(chainId: number | undefined | null): Token[] {
+function useUserAddedTokensOnChain(chainId: number | undefined | null): Token[] {
   const serializedTokensMap = useAppSelector(({ user: { tokens } }) => tokens)
 
   return useMemo(() => {

@@ -92,4 +92,4 @@ function AnimatedInLineChart<T>({
   )
 }
 
-export default React.memo(AnimatedInLineChart) as typeof AnimatedInLineChart
+React.memo(AnimatedInLineChart) as typeof AnimatedInLineChart

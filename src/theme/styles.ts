@@ -1,4 +1,4 @@
-import { css, keyframes } from 'styled-components/macro'
+import { css } from 'styled-components/macro'
 
 export const flexColumnNoWrap = css`
   display: flex;
@@ -15,30 +15,3 @@ export enum TRANSITION_DURATIONS {
   medium = 250,
   fast = 125,
 }
-
-const transitions = {
-  duration: {
-    slow: `${TRANSITION_DURATIONS.slow}ms`,
-    medium: `${TRANSITION_DURATIONS.medium}ms`,
-    fast: `${TRANSITION_DURATIONS.fast}ms`,
-  },
-  timing: {
-    ease: 'ease',
-    in: 'ease-in',
-    out: 'ease-out',
-    inOut: 'ease-in-out',
-  },
-}
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`
-
-export const textFadeIn = css`
-  animation: ${fadeIn} ${transitions.duration.fast} ${transitions.timing.in};
-`

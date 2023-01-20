@@ -83,4 +83,4 @@ function FadedInLineChart<T>({
   )
 }
 
-export default React.memo(FadedInLineChart) as typeof FadedInLineChart
+React.memo(FadedInLineChart) as typeof FadedInLineChart
