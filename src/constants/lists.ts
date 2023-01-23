@@ -17,7 +17,7 @@ const BA_LIST = 'https://raw.githubusercontent.com/The-Blockchain-Association/se
 const NEW_TOKEN_LIST =
   'https://raw.githubusercontent.com/OnGridSystems/goerliswap-dapp/development-3.3.6/src/constants/tokenLists/goerli.tokenlist.json'
 const CUSTOM_TOKEN_LIST =
-  'https://raw.githubusercontent.com/OnGridSystems/goerliswap-dapp/development-3.3.6/src/constants/customTokenList.json'
+  'https://raw.githubusercontent.com/OnGridSystems/goerliswap-dapp/development-3.3.6/src/constants/tokenLists/custom.tokenlist.json'
 
 export const UNSUPPORTED_LIST_URLS: string[] = [BA_LIST]
 
