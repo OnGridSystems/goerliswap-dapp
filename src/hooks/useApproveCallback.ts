@@ -1,6 +1,7 @@
 import { MaxUint256 } from '@ethersproject/constants'
 import { TransactionResponse } from '@ethersproject/providers'
-import { CurrencyAmount, ChainId, Percent, Currency, TradeType } from '@uniswap/sdk-core'
+import { CurrencyAmount, Percent, Currency, TradeType } from '@uniswap/sdk-core'
+import { ChainId } from '../constants/goerliConstants'
 import { Trade as V2Trade } from '@uniswap/v2-sdk'
 import { Trade as V3Trade } from '@uniswap/v3-sdk'
 import { useCallback, useMemo } from 'react'

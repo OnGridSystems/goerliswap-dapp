@@ -1,4 +1,5 @@
-import { ChainId, Token, CurrencyAmount, WETH9 } from '@uniswap/sdk-core'
+import { Token, CurrencyAmount } from '@uniswap/sdk-core'
+import { ChainId, WETH9 } from '../../constants/goerliConstants'
 import { Pair } from '@uniswap/v2-sdk'
 import JSBI from 'jsbi'
 import { useMemo } from 'react'

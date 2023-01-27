@@ -1,4 +1,5 @@
-import { Currency, currencyEquals, WETH9 } from '@uniswap/sdk-core'
+import { Currency, currencyEquals } from '@uniswap/sdk-core'
+import { WETH9 } from '../constants/goerliConstants'
 import { useMemo } from 'react'
 import { tryParseAmount } from '../state/swap/hooks'
 import { useTransactionAdder } from '../state/transactions/hooks'

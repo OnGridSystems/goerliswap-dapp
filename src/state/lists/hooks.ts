@@ -1,6 +1,6 @@
 import DEFAULT_TOKEN_LIST from '@uniswap/default-token-list'
-import { ChainId } from '@uniswap/sdk-core'
 import { TokenList } from '@uniswap/token-lists'
+import { ChainId } from 'constants/goerliConstants'
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import sortByListPriority from 'utils/listSort'
@@ -22,6 +22,7 @@ const EMPTY_LIST: TokenAddressMap = {
   [ChainId.ROPSTEN]: {},
   [ChainId.GÖRLI]: {},
   [ChainId.MAINNET]: {},
+  [ChainId.LOCALNODE]: {},
 }
 
 const listCache: WeakMap<TokenList, TokenAddressMap> | null =
@@ -30,7 +31,6 @@ const listCache: WeakMap<TokenList, TokenAddressMap> | null =
 export function listToTokenMap(list: TokenList): TokenAddressMap {
   const result = listCache?.get(list)
   if (result) return result
-
   const map = list.tokens.reduce<TokenAddressMap>(
     (tokenMap, tokenInfo) => {
       const token = new WrappedTokenInfo(tokenInfo, list)
@@ -68,12 +68,14 @@ function combineMaps(map1: TokenAddressMap, map2: TokenAddressMap): TokenAddress
     [ChainId.ROPSTEN]: { ...map1[ChainId.ROPSTEN], ...map2[ChainId.ROPSTEN] },
     [ChainId.KOVAN]: { ...map1[ChainId.KOVAN], ...map2[ChainId.KOVAN] },
     [ChainId.GÖRLI]: { ...map1[ChainId.GÖRLI], ...map2[ChainId.GÖRLI] },
+    [ChainId.LOCALNODE]: { ...map1[ChainId.LOCALNODE], ...map2[ChainId.LOCALNODE] },
   }
 }
 
 // merge tokens contained within lists from urls
 function useCombinedTokenMapFromUrls(urls: string[] | undefined): TokenAddressMap {
   const lists = useAllLists()
+
   return useMemo(() => {
     if (!urls) return EMPTY_LIST
     return (

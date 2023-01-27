@@ -149,5 +149,7 @@
     ]
   },
   "license": "GPL-3.0-or-later",
-  "dependencies": {}
+  "dependencies": {
+    "tiny-invariant": "^1.3.1"
+  }
 }

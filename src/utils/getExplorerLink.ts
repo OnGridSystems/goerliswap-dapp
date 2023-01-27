@@ -1,4 +1,4 @@
-import { ChainId } from '@uniswap/sdk-core'
+import { ChainId } from '../constants/goerliConstants'
 
 const ETHERSCAN_PREFIXES: { [chainId in ChainId]: string } = {
   1: '',
@@ -6,6 +6,7 @@ const ETHERSCAN_PREFIXES: { [chainId in ChainId]: string } = {
   4: 'rinkeby.',
   5: 'goerli.',
   42: 'kovan.',
+  31337: '',
 }
 
 export enum ExplorerDataType {

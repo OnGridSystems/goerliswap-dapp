@@ -1,0 +1,30 @@
+{
+  "name": "Locanode Tokens",
+  "timestamp": "2023-01-20T08:10:26.867Z",
+  "tags": {},
+  "version": {
+    "major": 0,
+    "minor": 1,
+    "patch": 0
+  },
+  "logoURI": "https://raw.githubusercontent.com/SetProtocol/uniswap-tokenlist/main/assets/set-logo.svg",
+  "keywords": ["uniswap", "custom"],
+  "tokens": [
+    {
+      "chainId": 31337,
+      "address": "0x403E6e00E035E81e7FE446ac8dc44d3A34155bB0",
+      "name": "Wrapped Ether",
+      "symbol": "WETH9",
+      "decimals": 18,
+      "logoURI": "https://raw.githubusercontent.com/Uniswap/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png"
+    },
+    {
+      "chainId": 31337,
+      "address": "0x31f116f6E800863efc7F32aE4AC4E63c67aDF03b",
+      "name": "Uniswap",
+      "symbol": "UNI",
+      "decimals": 18,
+      "logoURI": "https://cloudflare-ipfs.com/ipfs/QmXttGpZrECX5qCyXbBQiqgQNytVGeZW5Anewvh2jc4psg/"
+    }
+  ]
+}

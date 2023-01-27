@@ -1,4 +1,4 @@
-import { ChainId } from '@uniswap/sdk-core'
+import { ChainId } from '../../constants/goerliConstants'
 import useScrollPosition from '@react-hook/window-scroll'
 import React, { useState } from 'react'
 import { Text } from 'rebass'
@@ -306,6 +306,7 @@ const NETWORK_LABELS: { [chainId in ChainId]?: string } = {
   [ChainId.ROPSTEN]: 'Ropsten',
   [ChainId.GÖRLI]: 'Görli',
   [ChainId.KOVAN]: 'Kovan',
+  [ChainId.LOCALNODE]: 'Localnode',
 }
 
 export default function Header() {

@@ -1,4 +1,5 @@
-import { ChainId, Percent, Token } from '@uniswap/sdk-core'
+import { Percent, Token } from '@uniswap/sdk-core'
+import { ChainId } from '../../constants/goerliConstants'
 import { Pair } from '@uniswap/v2-sdk'
 import JSBI from 'jsbi'
 import flatMap from 'lodash.flatmap'

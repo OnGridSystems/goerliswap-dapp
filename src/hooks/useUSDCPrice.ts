@@ -1,4 +1,5 @@
-import { ChainId, Currency, CurrencyAmount, Price, Token } from '@uniswap/sdk-core'
+import { Currency, CurrencyAmount, Price, Token } from '@uniswap/sdk-core'
+import { ChainId } from '../constants/goerliConstants'
 import { useMemo } from 'react'
 import { USDC } from '../constants/tokens'
 import { useV2TradeExactOut } from './useV2Trade'
