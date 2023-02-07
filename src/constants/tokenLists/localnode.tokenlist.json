@@ -25,6 +25,46 @@
       "symbol": "UNI",
       "decimals": 18,
       "logoURI": "https://cloudflare-ipfs.com/ipfs/QmXttGpZrECX5qCyXbBQiqgQNytVGeZW5Anewvh2jc4psg/"
+    },
+    {
+      "chainId": 31337,
+      "address": "0x27e0fDc6F46b68Aa7C79481905e039F7287Bd4e4",
+      "name": "Token1",
+      "symbol": "TKN",
+      "decimals": 18,
+      "logoURI": "https://raw.githubusercontent.com/SetProtocol/uniswap-tokenlist/main/assets/tokens/yam_house.png"
+    }, 
+    {
+      "chainId": 31337,
+      "address": "0x88a0Bc4c00223781dab3eE654097715500bab5a9",
+      "name": "Token2",
+      "symbol": "TKN",
+      "decimals": 18,
+      "logoURI": "https://raw.githubusercontent.com/SetProtocol/uniswap-tokenlist/main/assets/tokens/mvi.png"
+    },
+    {
+      "chainId": 31337,
+      "address": "0x5266564b1Fe7Ee3F57932Cc3d9D9678BA4D43d8F",
+      "name": "Token3",
+      "symbol": "TKN",
+      "decimals": 18,
+      "logoURI": "https://raw.githubusercontent.com/SetProtocol/uniswap-tokenlist/main/assets/tokens/green-indexes-GEX.png"
+    }, 
+    {
+      "chainId": 31337,
+      "address": "0xA9Ca1A512aAb13fBBf9a6b316Dd7D037b827369D",
+      "name": "Token4",
+      "symbol": "TKN",
+      "decimals": 18,
+      "logoURI": "https://raw.githubusercontent.com/SetProtocol/uniswap-tokenlist/main/assets/tokens/5aBvPVaM_400x400.jpeg"
+    }, 
+    {
+      "chainId": 31337,
+      "address": "0xab763d778e0D615901F9e7e926798181cE238225",
+      "name": "Token5",
+      "symbol": "TKN",
+      "decimals": 18,
+      "logoURI": "https://raw.githubusercontent.com/SetProtocol/uniswap-tokenlist/main/assets/tokens/beverage-linketh.png"
     }
   ]
 }
