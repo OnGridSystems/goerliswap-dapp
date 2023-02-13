@@ -1,5 +1,6 @@
 import JSBI from 'jsbi'
-import { ChainId, Percent, CurrencyAmount, Currency, TradeType, Token } from '@uniswap/sdk-core'
+import { Percent, CurrencyAmount, Currency, TradeType, Token } from '@uniswap/sdk-core'
+import { ChainId } from '../constants/goerliConstants'
 import { Trade as V2Trade } from '@uniswap/v2-sdk'
 import { Trade as V3Trade } from '@uniswap/v3-sdk'
 import { splitSignature } from 'ethers/lib/utils'
@@ -51,6 +52,9 @@ const PERMITTABLE_TOKENS: {
   },
   [ChainId.KOVAN]: {
     [UNI[ChainId.KOVAN].address]: { type: PermitType.AMOUNT, name: 'Uniswap' },
+  },
+  [ChainId.LOCALNODE]: {
+    [UNI[ChainId.LOCALNODE].address]: { type: PermitType.AMOUNT, name: 'Uniswap' },
   },
 }
 

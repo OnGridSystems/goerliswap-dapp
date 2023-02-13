@@ -1,6 +1,7 @@
 import React, { useContext, useMemo } from 'react'
 import { Pair } from '@uniswap/v2-sdk'
-import { Token, ChainId } from '@uniswap/sdk-core'
+import { Token } from '@uniswap/sdk-core'
+import { ChainId } from '../../constants/goerliConstants'
 import { ThemeContext } from 'styled-components'
 import { AutoColumn } from '../../components/Column'
 import { AutoRow } from '../../components/Row'

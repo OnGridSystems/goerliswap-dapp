@@ -1,4 +1,5 @@
-import { ChainId, Currency } from '@uniswap/sdk-core'
+import { Currency } from '@uniswap/sdk-core'
+import { ChainId } from '../../constants/goerliConstants'
 import React, { useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { getExplorerLink, ExplorerDataType } from '../../utils/getExplorerLink'

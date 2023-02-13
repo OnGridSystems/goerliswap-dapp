@@ -203,10 +203,6 @@ export function useDerivedMintInfo(
     error = 'Insufficient ' + currencies[Field.CURRENCY_B]?.symbol + ' balance'
   }
 
-  if (!liquidityMinted?.greaterThan(ZERO)) {
-    error = `Insufficient input amount`
-  }
-
   return {
     dependentField,
     currencies,

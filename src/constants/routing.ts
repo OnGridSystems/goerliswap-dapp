@@ -1,5 +1,6 @@
 // a list of tokens by chain
-import { ChainId, Token, WETH9 } from '@uniswap/sdk-core'
+import { Token } from '@uniswap/sdk-core'
+import { ChainId, WETH9 } from '../constants/goerliConstants'
 import { AMPL, DAI, FEI, FRAX, FXS, MIR, renBTC, TRIBE, UMA, UNI, USDC, USDT, UST, WBTC } from './tokens'
 
 type ChainTokenList = {
@@ -31,6 +32,7 @@ const WETH_ONLY: ChainTokenList = {
   [ChainId.RINKEBY]: [WETH9[ChainId.RINKEBY]],
   [ChainId.GÖRLI]: [WETH9[ChainId.GÖRLI]],
   [ChainId.KOVAN]: [WETH9[ChainId.KOVAN]],
+  [ChainId.LOCALNODE]: [WETH9[ChainId.LOCALNODE]],
 }
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {

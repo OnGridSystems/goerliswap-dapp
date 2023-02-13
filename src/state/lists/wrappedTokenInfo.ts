@@ -1,4 +1,5 @@
-import { ChainId, Token } from '@uniswap/sdk-core'
+import { Token } from '@uniswap/sdk-core'
+import { ChainId } from '../../constants/goerliConstants'
 import { Tags, TokenInfo } from '@uniswap/token-lists'
 import { TokenList } from '@uniswap/token-lists/dist/types'
 import { isAddress } from '../../utils'

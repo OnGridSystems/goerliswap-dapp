@@ -1,4 +1,4 @@
-import { ChainId } from '@uniswap/sdk-core'
+import { ChainId } from '../constants/goerliConstants'
 import { Web3Provider } from '@ethersproject/providers'
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
@@ -27,9 +27,17 @@ const NETWORK_URLS: {
   [ChainId.ROPSTEN]: `https://ropsten.infura.io/v3/${INFURA_KEY}`,
   [ChainId.GÖRLI]: `https://goerli.infura.io/v3/${INFURA_KEY}`,
   [ChainId.KOVAN]: `https://kovan.infura.io/v3/${INFURA_KEY}`,
+  [ChainId.LOCALNODE]: `http://localhost:8545/`,
 }
 
-const SUPPORTED_CHAIN_IDS = [ChainId.MAINNET, ChainId.RINKEBY, ChainId.ROPSTEN, ChainId.KOVAN, ChainId.GÖRLI]
+const SUPPORTED_CHAIN_IDS = [
+  ChainId.MAINNET,
+  ChainId.RINKEBY,
+  ChainId.ROPSTEN,
+  ChainId.KOVAN,
+  ChainId.GÖRLI,
+  ChainId.LOCALNODE,
+]
 
 export const network = new NetworkConnector({
   urls: NETWORK_URLS,

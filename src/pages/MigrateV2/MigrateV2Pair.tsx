@@ -1,6 +1,7 @@
 import JSBI from 'jsbi'
 import React, { useCallback, useMemo, useState, useEffect } from 'react'
-import { Fraction, Percent, Price, Token, CurrencyAmount, WETH9 } from '@uniswap/sdk-core'
+import { Fraction, Percent, Price, Token, CurrencyAmount } from '@uniswap/sdk-core'
+import { WETH9 } from '../../constants/goerliConstants'
 import { FACTORY_ADDRESS } from '@uniswap/v2-sdk'
 import { Redirect, RouteComponentProps } from 'react-router'
 import { Text } from 'rebass'

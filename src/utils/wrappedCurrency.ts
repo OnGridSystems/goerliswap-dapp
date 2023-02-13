@@ -1,14 +1,16 @@
-import {
-  ChainId,
-  Currency,
-  ETHER,
-  Token,
-  CurrencyAmount,
-  wrappedCurrency as wrappedCurrencyInternal,
-  wrappedCurrencyAmount as wrappedCurrencyAmountInternal,
-  WETH9,
-} from '@uniswap/sdk-core'
+import { Currency, ETHER, Token, CurrencyAmount } from '@uniswap/sdk-core'
+import invariant from 'tiny-invariant'
 import { supportedChainId } from './supportedChainId'
+import { ChainId, WETH9 } from '../constants/goerliConstants'
+
+export function wrappedCurrencyInternal(currency: Currency, chainId: ChainId): Token {
+  if (currency.isToken) {
+    invariant(currency.chainId === chainId, 'CHAIN_ID')
+    return currency
+  }
+  if (currency.isEther) return WETH9[chainId]
+  throw new Error('CURRENCY')
+}
 
 export function wrappedCurrency(currency: Currency | undefined, chainId: ChainId | undefined): Token | undefined {
   return chainId && currency ? wrappedCurrencyInternal(currency, chainId) : undefined
@@ -18,7 +20,13 @@ export function wrappedCurrencyAmount(
   currencyAmount: CurrencyAmount<Currency> | undefined,
   chainId: ChainId | undefined
 ): CurrencyAmount<Token> | undefined {
-  return currencyAmount && chainId ? wrappedCurrencyAmountInternal(currencyAmount, chainId) : undefined
+  return currencyAmount && chainId
+    ? CurrencyAmount.fromFractionalAmount(
+        wrappedCurrencyInternal(currencyAmount.currency, chainId),
+        currencyAmount.numerator,
+        currencyAmount.denominator
+      )
+    : undefined
 }
 
 export function unwrappedToken(token: Token): Currency {

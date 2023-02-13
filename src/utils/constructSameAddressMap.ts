@@ -1,4 +1,4 @@
-import { ChainId } from '@uniswap/sdk-core'
+import { ChainId } from '../constants/goerliConstants'
 
 export function constructSameAddressMap<T extends string>(address: T): { [chainId in ChainId]: T } {
   return {
@@ -7,5 +7,6 @@ export function constructSameAddressMap<T extends string>(address: T): { [chainI
     [ChainId.KOVAN]: address,
     [ChainId.RINKEBY]: address,
     [ChainId.GÖRLI]: address,
+    [ChainId.LOCALNODE]: address,
   }
 }

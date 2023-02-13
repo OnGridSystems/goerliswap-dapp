@@ -1,4 +1,5 @@
-import { ChainId, Token } from '@uniswap/sdk-core'
+import { Token } from '@uniswap/sdk-core'
+import { ChainId } from '../constants/goerliConstants'
 import { UNI_ADDRESS } from './addresses'
 
 export const AMPL = new Token(ChainId.MAINNET, '0xD46bA6D942050d489DBd938a2C909A5d5039A161', 9, 'AMPL', 'Ampleforth')
@@ -27,4 +28,5 @@ export const UNI: { [chainId in ChainId]: Token } = {
   [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, UNI_ADDRESS[ChainId.ROPSTEN], 18, 'UNI', 'Uniswap'),
   [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, UNI_ADDRESS[ChainId.GÖRLI], 18, 'UNI', 'Uniswap'),
   [ChainId.KOVAN]: new Token(ChainId.KOVAN, UNI_ADDRESS[ChainId.KOVAN], 18, 'UNI', 'Uniswap'),
+  [ChainId.LOCALNODE]: new Token(ChainId.LOCALNODE, '0x31f116f6E800863efc7F32aE4AC4E63c67aDF03b', 18, 'UNI', 'Uniswap'),
 }
